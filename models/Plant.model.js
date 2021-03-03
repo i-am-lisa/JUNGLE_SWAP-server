@@ -8,11 +8,6 @@ let PlantSchema = new Schema({
 
   size: Number,
   
-  passwordHash: {
-    type: String,
-    required: true
-  },
-
   image: {
     type: String,
     default: "https://i.pinimg.com/originals/b7/21/26/b721265eb826b20e6f91d6643b95c122.jpg"
@@ -20,7 +15,7 @@ let PlantSchema = new Schema({
 
   location: {
     type: String,
-    enum: ['sunny', 'shade', 'n/a']
+    enum: ['Select location', 'sunny', 'shade', 'n/a']
   },
 
   creator: {
@@ -30,7 +25,7 @@ let PlantSchema = new Schema({
 })
 
 // 2. Define your model
-let PlantModel = model('user', PlantSchema)
+let PlantModel = model('plant', PlantSchema)
 
 // 3. Export your Model with 'module.exports'
 module.exports = PlantModel

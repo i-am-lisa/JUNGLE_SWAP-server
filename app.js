@@ -40,6 +40,12 @@ app.use('/api', allRoutes);
 const authRoutes = require("./routes/auth.routes");
 app.use("/api", authRoutes);
 
+const cloudinaryRoutes = require("./routes/cloudinary.routes");
+app.use("/api", cloudinaryRoutes);
+
+const plantsRoutes = require("./routes/plants.routes");
+app.use("/api", plantsRoutes);
+
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require('./error-handling')(app);
 
