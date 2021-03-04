@@ -15,7 +15,7 @@ let PlantSchema = new Schema({
 
   location: {
     type: String,
-    enum: ['Select location', 'sunny', 'shade', 'n/a']
+    enum: ['Select location', 'sunny', 'shade', 'Sun and Shade']
   },
 
   creator: {
