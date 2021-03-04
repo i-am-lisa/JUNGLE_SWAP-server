@@ -33,7 +33,7 @@ router.post('/plants/create', (req, res) => {
          size: size,
          location: location,
          image: image,
-         creator:req.session.loggedInUser._id
+         creator:req.session.loggedInUser._id,
     }
 
     PlantModel.create(newPlant)
