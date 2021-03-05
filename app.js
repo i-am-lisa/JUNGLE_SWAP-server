@@ -27,7 +27,7 @@ app.use(session({
       maxAge: 1000*60*60*24// is in milliseconds.  expiring in 1 day
     },
     store: new MongoStore({
-      mongoUrl: process.env.MONGODB_URI || "mongodb://localhost/JungleSwap",
+      mongoUrl: process.env.MONGODB_URI || "mongodb://localhost/JUNGLE_SWAP",
       ttl: 60*60*24, // is in seconds. expiring in 1 day
     })
 }));
@@ -45,6 +45,9 @@ app.use("/api", cloudinaryRoutes);
 
 const plantsRoutes = require("./routes/plants.routes");
 app.use("/api", plantsRoutes);
+
+const stripeRoutes = require("./routes/stripe.routes");
+app.use("/api", stripeRoutes);
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require('./error-handling')(app);

@@ -22,6 +22,22 @@ router.get('/plants', (req, res) => {
           })         
 })
 
+router.get('/plants/search', (req, res) => {
+     let name = req.query.q
+
+     PlantModel.find({name: {$regex:`^${name}`,$options:"i"}})
+          .then((plants) => {
+               console.log(plants)
+               res.status(200).json(plants)
+          })
+          .catch((err) => {
+               res.status(500).json({
+                    error: 'Something went wrong',
+                    message: err
+               })
+          })         
+})
+
 // will handle all POST requests to http:localhost:5005/api/create
 
 router.post('/plants/create', (req, res) => {  
