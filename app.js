@@ -40,11 +40,11 @@ app.use('/api', allRoutes);
 const authRoutes = require("./routes/auth.routes");
 app.use("/api", authRoutes);
 
-const cloudinaryRoutes = require("./routes/cloudinary.routes");
-app.use("/api", cloudinaryRoutes);
-
 const plantsRoutes = require("./routes/plants.routes");
 app.use("/api", plantsRoutes);
+
+const cloudinaryRoutes = require("./routes/cloudinary.routes");
+app.use("/api", cloudinaryRoutes);
 
 const stripeRoutes = require("./routes/stripe.routes");
 app.use("/api", stripeRoutes);

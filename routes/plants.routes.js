@@ -97,8 +97,14 @@ router.delete('/plants/:id', (req, res) => {
 router.patch('/plants/:id', (req, res) => {
     let id = req.params.id
     const {name, description, size, location, image} = req.body;
-
-    PlantModel.findByIdAndUpdate(id, {$set: {name: name, description: description, size: size, location: location, image, creator:req.session.loggedInUser._id}}, {new: true})
+    const updatedPlant = {
+      name: name, 
+      description: description, 
+      size: size, 
+      location: location, 
+      image: image
+    }
+    PlantModel.findByIdAndUpdate(id, {$set: updatedPlant}, {new: true})
           .then((response) => {
                res.status(200).json(response)
           })
