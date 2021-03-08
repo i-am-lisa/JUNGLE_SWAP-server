@@ -41,13 +41,14 @@ router.get('/plants/search', (req, res) => {
 // will handle all POST requests to http:localhost:5005/api/create
 
 router.post('/plants/create', (req, res) => {  
-    const {name, description, location, image, size} = req.body;
+    const {name, description, location, image, size, price} = req.body;
     console.log(req.body)
     const newPlant = {
          name: name,
          description: description,
          size: size,
          location: location,
+         price: price,
          image: image,
          creator:req.session.loggedInUser._id,
     }
@@ -96,11 +97,12 @@ router.delete('/plants/:id', (req, res) => {
 // will handle all PATCH requests to http:localhost:5005/api/plants/:id
 router.patch('/plants/:id', (req, res) => {
     let id = req.params.id
-    const {name, description, size, location, image} = req.body;
+    const {name, description, size, location, image, price} = req.body;
     const updatedPlant = {
       name: name, 
       description: description, 
       size: size, 
+      price: price,
       location: location, 
       image: image
     }

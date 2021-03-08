@@ -18,6 +18,8 @@ let PlantSchema = new Schema({
     enum: ['Select location', 'sun', 'shade', 'sun and shade']
   },
 
+  price: Number,
+  
   creator: {
     type: Schema.Types.ObjectId,
     ref: "User"
