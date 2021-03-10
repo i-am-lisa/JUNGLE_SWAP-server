@@ -2,9 +2,11 @@ const express = require("express");
 const router = express.Router();
 const uploader = require("../config/cloudinary.config.js");
 const PlantModel = require("../models/Plant.model");
+const RequestModel = require("../models/Request.model");
 
 // NOTE: All your API routes will start from /api 
 
+// -------------------------- All plants --------------------------
 // will handle all GET requests to http:localhost:5005/api/plants
 router.get(
   "/plants",
@@ -28,6 +30,7 @@ router.get(
   }
 );
 
+// ------------------------ Search plant --------------------------
 router.get(
   "/plants/search",
   (req, res) => {
@@ -57,6 +60,7 @@ router.get(
   }
 );
 
+// ------------------------ Create plant ----------------------------
 // will handle all POST requests to http:localhost:5005/api/create
 router.post(
   "/plants/create",
@@ -90,6 +94,7 @@ router.post(
   }
 );
 
+// --------------------------- All plants ----------------------------------
 // will handle all GET requests to http:localhost:5005/api/plants/:plantId
 //PS: Don"t type :plantId , it"s something dynamic, 
 router.get(
@@ -114,6 +119,7 @@ router.get(
   }
 );
 
+// -------------------------- Delete plant ------------------------------
 // will handle all DELETE requests to http:localhost:5005/api/plants/:id
 router.delete(
   "/plants/:id",
@@ -137,6 +143,7 @@ router.delete(
   }
 );
 
+// ------------------------------ Edit plant -----------------------------
 // will handle all PATCH requests to http:localhost:5005/api/plants/:id
 router.patch(
   "/plants/:id",
@@ -167,6 +174,60 @@ router.patch(
           );
         }
       );
+  }
+);
+
+// ------------------------------ Create request ---------------------------
+router.post(
+  "/plants/request",
+  (req, res) => {
+    const { message, buyer, seller, plant } = req.body;
+    newRequest = {
+      buyer: buyer,
+      seller: seller,
+      plant: plant,
+      message: message
+    }
+    RequestModel.create(newRequest)
+      .then(
+        (response) => {
+          res.status(200).json(response);
+        }
+      )
+      .catch(
+        (err) => {
+          res.status(500).json(
+            {
+              error: "Create request failed",
+              message: err
+            }
+          );
+        }
+      );
+  }
+);
+
+// ---------------------------- Get requests --------------------------
+router.get(
+  "/myrequests",
+  (req, res) => {
+    RequestModel.find({})
+    .then(
+      (requests) => {
+        console.log("Requests server", requests)
+        res.status(200).json(requests);
+      }
+    )
+    .catch(
+      (err) => {
+        res.status(500).json(
+          {
+            error: "Get requests failed",
+            message: err
+          }
+        );
+      }
+    );
   }
 );
 
