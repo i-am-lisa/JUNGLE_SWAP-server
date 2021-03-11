@@ -28,7 +28,7 @@ router.post(
      if (!myPassRegex.test(password)) {
        res.status(500).json(
          {
-           errorMessage: "Password needs to have 8 characters, a number and an Uppercase alphabet"
+           errorMessage: "Password needs to have 8 characters, a number, a special character and an Uppercase alphabet"
          }
        );
        return;
