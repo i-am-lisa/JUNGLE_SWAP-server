@@ -8,31 +8,31 @@ router.post(
     const { username, email, password } = req.body;
     // -----SERVER SIDE VALIDATION ----------
     if (!username || !email || !password) {
-        res.status(500).json(
-          {
-          errorMessage: "Please enter username, email and password"
-          }
-        );
-        return;  
+      res.status(500).json(
+        {
+        errorMessage: "Please enter username, email and password"
+        }
+      );
+      return;  
     }
-    // const myRegex = new RegExp(/^[a-z0-9](?!.*?[^\na-z0-9]{2})[^\s@]+@[^\s@]+\.[^\s@]+[a-z0-9]$/);
-    // if (!myRegex.test(email)) {
-    //     res.status(500).json(
-    //       {
-    //         errorMessage: "Email format not correct"
-    //        }
-    //      );
-    //     return;  
-    // }
-    // const myPassRegex = new RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/);
-    // if (!myPassRegex.test(password)) {
-    //   res.status(500).json(
-    //      {
-    //        errorMessage: "Password needs to have 8 characters, a number and an Uppercase alphabet"
-    //      }
-    //    );
-    //   return;  
-    // }
+     const myRegex = new RegExp(/^[a-z0-9](?!.*?[^\na-z0-9]{2})[^\s@]+@[^\s@]+\.[^\s@]+[a-z0-9]$/);
+     if (!myRegex.test(email)) {
+       res.status(500).json(
+         {
+           errorMessage: "Email format not correct"
+         }
+       );
+       return;
+     }
+     const myPassRegex = new RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/);
+     if (!myPassRegex.test(password)) {
+       res.status(500).json(
+         {
+           errorMessage: "Password needs to have 8 characters, a number and an Uppercase alphabet"
+         }
+       );
+       return;
+     }
     
     // NOTE: We have used the Sync methods here. 
     // creating a salt 
@@ -83,15 +83,15 @@ router.post(
         );
       return;  
     }
-    // const myRegex = new RegExp(/^[a-z0-9](?!.*?[^\na-z0-9]{2})[^\s@]+@[^\s@]+\.[^\s@]+[a-z0-9]$/);
-    // if (!myRegex.test(email)) {
-    //   res.status(500).json(
-    //      {
-    //         error: "Email format not correct",
-    //      }
-    //    );
-    //    return;  
-    // }
+    const myRegex = new RegExp(/^[a-z0-9](?!.*?[^\na-z0-9]{2})[^\s@]+@[^\s@]+\.[^\s@]+[a-z0-9]$/);
+    if (!myRegex.test(email)) {
+      res.status(500).json(
+        {
+          error: "Email format not correct"
+        }
+      );
+      return;
+    }
     
     // Find if the user exists in the database 
     UserModel.findOne({ email })
