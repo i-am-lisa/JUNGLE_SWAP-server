@@ -10,7 +10,6 @@ let RequestSchema = new Schema(
       type: Schema.Types.ObjectId, ref: "User"
     },
     plant: Object,
-      //{type: Schema.Types.ObjectId, ref: "plant},"
     message: String
   }
 );
