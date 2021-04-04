@@ -15,7 +15,9 @@ router.post(
       );
       return;  
     }
-     const myRegex = new RegExp(/^[a-z0-9](?!.*?[^\na-z0-9]{2})[^\s@]+@[^\s@]+\.[^\s@]+[a-z0-9]$/);
+     const myRegex = new RegExp(/^[a-z0-9](?!.*?[^\na-z0-9]{2})[^\s@]+@[^\s@]+\.[^\s@]+[a-z0-9]$/);         
+     
+
      if (!myRegex.test(email)) {
        res.status(500).json(
          {
@@ -79,7 +81,7 @@ router.post(
     if (!email || !password) {
         res.status(500).json(
           {
-            error: "Please enter Username. email and password"
+            error: "Please enter Username, email and password"
           }
         );
       return;  
